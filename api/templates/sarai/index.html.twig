@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+    {% block content %}
+
+        <link rel="stylesheet" type="text/css" href="uno/components/card/card.css">
+        <link rel="stylesheet" type="text/css" href="uno/components/list/list-card.css">
+
+        <div class="row">
+            <div class="col-xl-9 col-lg-10 col-lg-offset-1">
+                <h2> Templates</h2>
+                <p>Hieronder een lijst van alle templates met beschrijving</p>
+                {% for template in templates %}
+                    <ul class="card-list">
+                        <li class="card">
+                            <a href="#" class="card__content">
+                                <div class="card__thumb"
+                                     style="background-image: url('../../docs/images/icon-trait.svg')"></div>
+                                <div class="card__body">
+                                    <span
+                                        class="card__title"><h3>{{ template.name }}</h3> {{ template.description }}</span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                {% endfor %}
+            </div>
+        </div>
+    {% endblock %}
