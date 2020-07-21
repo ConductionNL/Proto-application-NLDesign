@@ -1,27 +1,38 @@
 {% extends "base.html.twig" %}
     {% block content %}
 
-        <link rel="stylesheet" type="text/css" href="uno/components/card/card.css">
-        <link rel="stylesheet" type="text/css" href="uno/components/list/list-card.css">
+        <head>
+            <link rel="stylesheet" type="text/css" href="uno/components/list/list-card.css">
+            <link rel="stylesheet" type="text/css" href="uno/components/card/card.css">
+        </head>
 
-        <div class="row">
-            <div class="col-xl-9 col-lg-10 col-lg-offset-1">
-                <h2> Templates</h2>
-                <p>Hieronder een lijst van alle templates met beschrijving</p>
-                {% for template in templates %}
-                    <ul class="card-list">
-                        <li class="card">
-                            <a href="#" class="card__content">
-                                <div class="card__thumb"
-                                     style="background-image: url('../../docs/images/icon-trait.svg')"></div>
-                                <div class="card__body">
-                                    <span
-                                        class="card__title"><h3>{{ template.name }}</h3> {{ template.description }}</span>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                {% endfor %}
-            </div>
-        </div>
+        <style>
+            ul.list--card-small{
+                list-style-type: disc;
+                -webkit-column-count: 3;
+                -moz-column-count: 3;
+                column-count: 3;
+            }
+
+            .card__title {
+                text-align: left;
+            }
+
+            .card__body {
+                text-align: justify;
+            }
+
+        </style>
+        <h1>Templates namen</h1>
+        <ul class="list list--card list--card-small">
+            {% for template in templates %}
+            <li class="card card--small">
+                <a href="#" class="card__content">
+                    <div class="card__body"><span class="card__title">{{ template.description }}</span></div>
+                    <div class="card__body">{{ template.dateModified }}</div>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+
     {% endblock %}
