@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+{% block content %}
+    <h1>{{ template.name }}</h1>
+    <div class="content-background">
+        <div class="content">
+            {{ template.content|raw }}
+        </div>
+    </div>
+{% endblock %}

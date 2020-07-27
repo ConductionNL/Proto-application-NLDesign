@@ -12,14 +12,14 @@
         </style>
 
 
-        <h1>Nieuws templates</h1>
+        <h1>Stage overzicht</h1>
         <ul class="list list--card list--card-small" id="display">
-            {% for template in templates %}
+            {% for job in templates %}
                 <li class="card card--small">
-                    <a href="{{ path('app_sarai_template', {id: template.id}) }}" class="card__content">
+                    <a href="#" class="card__content">
                         <div class="card__body">
-                            <span class="card__title">{{ template.name }}</span><br>
-                            <p class="paragraph--s">{{ template.dateModified }}</p>
+                            <span class="card__title">{{ job.name }}</span><br>
+                            <p class="paragraph--s">{{ job.dateModified }}</p>
                         </div>
                     </a>
                 </li>
