@@ -1,38 +1,28 @@
 {% extends "base.html.twig" %}
     {% block content %}
 
-        <head>
-            <link rel="stylesheet" type="text/css" href="uno/components/list/list-card.css">
-            <link rel="stylesheet" type="text/css" href="uno/components/card/card.css">
-        </head>
-
         <style>
-            ul.list--card-small{
+
+            #display {
                 list-style-type: disc;
-                -webkit-column-count: 3;
-                -moz-column-count: 3;
-                column-count: 3;
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
             }
-
-            .card__title {
-                text-align: left;
-            }
-
-            .card__body {
-                text-align: justify;
-            }
-
         </style>
-        <h1>Templates namen</h1>
-        <ul class="list list--card list--card-small">
+
+
+        <h1>Nieuws templates</h1>
+        <ul class="list list--card list--card-small" id="display">
             {% for template in templates %}
-            <li class="card card--small">
-                <a href="#" class="card__content">
-                    <div class="card__body"><span class="card__title">{{ template.description }}</span></div>
-                    <div class="card__body">{{ template.dateModified }}</div>
-                </a>
-            </li>
+                <li class="card card--small">
+                    <a href="{{ path('app_sarai_template', {id: template.id}) }}" class="card__content">
+                        <div class="card__body">
+                            <span class="card__title">{{ template.name }}</span><br>
+                            <p class="paragraph--s">{{ template.dateModified }}</p>
+                        </div>
+                    </a>
+                </li>
             {% endfor %}
         </ul>
-
     {% endblock %}

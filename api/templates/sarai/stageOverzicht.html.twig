@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+    {% block content %}
+
+        <style>
+
+            #display {
+                list-style-type: disc;
+                -webkit-column-count: 2;
+                -moz-column-count: 2;
+                column-count: 2;
+            }
+        </style>
+
+
+        <h1>Stage overzicht</h1>
+        <ul class="list list--card list--card-small" id="display">
+            {% for job in templates %}
+                <li class="card card--small">
+                    <a href="#" class="card__content">
+                        <div class="card__body">
+                            <span class="card__title">{{ job.name }}</span><br>
+                            <p class="paragraph--s">{{ job.dateModified }}</p>
+                        </div>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endblock %}
