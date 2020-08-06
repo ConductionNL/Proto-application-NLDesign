@@ -7,9 +7,13 @@ landingURL: "www.conduction.nl"
 isBasedOn: "https://github.com/ConductionNL/Proto-component-commonground.git" 
 softwareVersion: "V.0.1"
 <<<<<<< HEAD
+<<<<<<< HEAD
 releaseDate: "2020-24-07"
 =======
 releaseDate: "2020-04-08"
+>>>>>>> development
+=======
+releaseDate: "2020-24-07"
 >>>>>>> development
 logo: www.zuid-drecht.nl 
 monochromeLogo: img/logo-mono.svg
