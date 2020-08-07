@@ -2,33 +2,27 @@
        for="{{ property.id }}">{{ property.title }} {% if property.required is defined and property.required %}<span
         style="color: red;"><strong>*</strong></span>{% endif %}</label>
 <fieldset class="input">
-
-    {% if property.enum is defined and property.enum is not empty and property.type == 'string' %}
-    {% for option in property.enum %}
-        {% if request.properties[property.name] is defined and request.properties[property.name] == option %}
-            <div class="input__group input__group--checkbox">
-                <input class="input__control input__control--checkbox" checked="checked" type="checkbox" id="{{ option }}"
-                       name="request[properties][{{ property.name }}]" value="{{ option }}">
-                <label class="input__label input__label--checkbox" for="{{ option }}">{{ option }}</label><br>
-            </div>
-        {% else %}
-            <div class="input__group input__group--checkbox">
-                <input class="input__control input__control--checkbox" type="checkbox" id="{{ option }}"
-                       name="request[properties][{{ property.name }}]" value="{{ option }}">
-                <label class="input__label input__label--checkbox" for="{{ option }}">{{ option|capitalize }}</label><br>
-            </div>
-        {% endif %}
-    {% endfor %}
-    {% elseif property.type == "boolean" %}
-    <div class="input__group input__group--checkbox">
-        <input class="input__control input__control--checkbox" type="checkbox" id="yes" name="request[properties][{{ property.name }}]" value="ja"
-               {% if request.properties[property.name] is defined and request.properties[property.name] == 'ja' %}checked="checked"{% endif %}>
-        <label class="input__label input__label--checkbox" for="yes">{{ 'yes'|trans|capitalize }}</label><br>
-    </div>
-    <div class="input__group input__group--checkbox">
-        <input class="input__control input__control--checkbox" type="checkbox" id="no" name="request[properties][{{ property.name }}]" value="nee"
-               {%  if request.properties[propery.name] is defined and request.properties[property.name] == 'nee'%}checked="checked"{% endif %}>
-        <label class="input__label input__label--checkbox" for="no">{{ 'no'|trans|capitalize }}</label><br>
-    </div>
-
+    {% if property.enum is defined and property.enum is not empty and property.type == 'array' %}
+        {% for option in property.enum %}
+            {% if request.properties[property.name] is defined and request.properties[property.name] == option %}
+                <div class="input__group input__group--checkbox">
+                    <input class="input__control input__control--checkbox" checked="checked" type="checkbox" id="{{ option }}"
+                           name="request[properties][{{ property.name }}]" value="{{ option }}">
+                    <label class="input__label input__label--checkbox" for="{{ option }}">{{ option }}</label>
+                </div>
+            {% else %}
+                <div class="input__group input__group--checkbox">
+                    <input class="input__control input__control--checkbox" type="checkbox" id="{{ option }}"
+                           name="request[properties][{{ property.name }}]" value="{{ option }}">
+                    <label class="input__label input__label--checkbox" for="{{ option }}">{{ option|capitalize }}</label>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% elseif property.enum is defined and property.enum is not empty and property.type == 'string' %}
+        <div class="input__group input__group--checkbox">
+            <input {% if property.required is defined and property.required %}required{% endif %} class="input__control input__control--checkbox" type="checkbox" id="true" name="request[properties][{{ property.name }}]" value="true"
+                   {% if request.properties[property.name] is defined and request.properties[property.name] == 'true' %}checked="checked"{% endif %}>
+            <label class="input__label input__label--checkbox" for="true">{{ 'true'|capitalize }}</label><br>
+        </div>
+    {% endif %}
 </fieldset>
