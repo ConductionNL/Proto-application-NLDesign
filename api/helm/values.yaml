@@ -18,7 +18,7 @@ settings:
   domain: zuid-drecht.nl
   subdomain: false
   subpath: false
-  subpathRouting: true
+  subpathRouting: 
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands

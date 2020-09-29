@@ -122,6 +122,7 @@ class PtcController extends AbstractController
         if ($stage && $stage != 'start') {
             $variables['request']['currentStage'] = $stage;
         }
+
         // Aditionally some one might have tried to pre-fill the form, wich we will then use overwrite the data
         $variables['request'] = array_merge($variables['request'], $request->query->all());
 
@@ -179,7 +180,7 @@ class PtcController extends AbstractController
             }
 
             // We only support the posting and saving of
-            if ($this->getUser() || in_array($request['status'], ['submitted'])) {
+            if ($this->getUser()) {
                 $request = $commonGroundService->saveResource($request, ['component' => 'vrc', 'type' => 'requests']);
             }
 
@@ -187,7 +188,6 @@ class PtcController extends AbstractController
             $variables['request'] = $request;
             $session->set('request', $request);
         }
-
         // Let load the request on the procces and validate it
         $variables['process'] = $ptcService->extendProcess($variables['process'], $variables['request']);
 
