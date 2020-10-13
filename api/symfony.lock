@@ -203,6 +203,15 @@
     "league/html-to-markdown": {
         "version": "4.8.1"
     },
+    "maennchen/zipstream-php": {
+        "version": "2.1.0"
+    },
+    "markbaker/complex": {
+        "version": "2.0.0"
+    },
+    "markbaker/matrix": {
+        "version": "2.0.0"
+    },
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
@@ -263,6 +272,9 @@
     "phpoffice/common": {
         "version": "0.2.9"
     },
+    "phpoffice/phpspreadsheet": {
+        "version": "1.15.0"
+    },
     "phpoffice/phpword": {
         "version": "0.17.0"
     },
@@ -289,6 +301,9 @@
     },
     "psr/log": {
         "version": "1.1.0"
+    },
+    "psr/simple-cache": {
+        "version": "1.0.1"
     },
     "ralouphie/getallheaders": {
         "version": "2.0.5"
