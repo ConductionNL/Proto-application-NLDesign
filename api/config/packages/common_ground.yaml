@@ -39,7 +39,8 @@ parameters:
     env(APP_INTERNAL):
     env(APP_BUILD_ALL_FIXTURES):
     env(APP_URL): "http://localhost"
-    env(APP_SESSION_DURATION): 900
+    env(APP_SESSION_DURATION): "900"
+    env(APP_DEPENDENCIES):
 
     env(APP_CONTAINER): ""
     env(APP_REPRO): ""
@@ -64,7 +65,6 @@ parameters:
     app_subdomain: "%env(APP_SUBDOMAIN)%"
     app_subpath: "%env(APP_SUBPATH)%"
     app_subpath_routing: "%env(APP_SUBPATH_ROUTING)%"
-    app_url: "%env(APP_URL)%"
     app_demo: "%env(APP_DEMO)%"
     app_container: "%env(APP_CONTAINER)%"
     app_repro: "%env(APP_REPRO)%"
@@ -73,6 +73,7 @@ parameters:
     app_build_all_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
     app_session_duration: "%env(APP_SESSION_DURATION)%"
     app_url: "%env(APP_URL)%"
+    app_dependencies: "%env(APP_DEPENDENCIES)%"
 
     # Organisatie details
     env(GOOGLE_TAG_MANAGER_ID): ""
@@ -319,6 +320,7 @@ twig:
         app_build_all_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
         app_session_duration: "%env(APP_SESSION_DURATION)%"
         app_url: "%env(APP_URL)%"
+        app_dependencies: "%env(APP_DEPENDENCIES)%"
 
         # Security Details
         app_commonground_id: "%env(APP_COMMONGROUND_ID)%"
