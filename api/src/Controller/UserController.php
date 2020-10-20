@@ -191,11 +191,23 @@ class UserController extends AbstractController
     public function githubAction(Session $session, Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
     {
         $session->set('backUrl', $request->query->get('backUrl'));
+        $validChars = '0123456789abcdefghijklmnopqrstuvwxyz';
+        $state = substr(str_shuffle(str_repeat($validChars, ceil(3 / strlen($validChars)))), 1, 8);
+        $session->set('state', $state);
+
+        $redirect = $request->getUri();
+        if (strpos($redirect, '?') == true) {
+            $redirect = substr($redirect, 0, strpos($redirect, '?'));
+        }
 
         $providers = $commonGroundService->getResourceList(['component' => 'uc', 'type' => 'providers'], ['type' => 'github', 'application' => $params->get('app_id')])['hydra:member'];
         $provider = $providers[0];
 
-        return $this->redirect('https://github.com/login/oauth/authorize?state='.$this->params->get('app_id').'&redirect_uri=https://checkin.dev.zuid-drecht.nl/github&client_id=0106127e5103f0e5af24');
+        if (isset($provider['configuration']['app_id']) && isset($provider['configuration']['secret'])) {
+            return $this->redirect('https://github.com/login/oauth/authorize?state='.$state.'&redirect_uri='.$redirect.'&client_id='.$provider['configuration']['app_id'].'&scope=read:user%20user:email');
+        } else {
+            return $this->render('500.html.twig');
+        }
     }
 
     /**
