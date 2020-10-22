@@ -629,12 +629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConductionNL/CommonGroundBundle.git",
-                "reference": "5f63d8eb63ae1bdb77969c96eefeb5126c6a7daf"
+                "reference": "f9778a448fde63c4e69924838c7360ca7fe2f00f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/5f63d8eb63ae1bdb77969c96eefeb5126c6a7daf",
-                "reference": "5f63d8eb63ae1bdb77969c96eefeb5126c6a7daf",
+                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/f9778a448fde63c4e69924838c7360ca7fe2f00f",
+                "reference": "f9778a448fde63c4e69924838c7360ca7fe2f00f",
                 "shasum": ""
             },
             "require": {
@@ -712,7 +712,7 @@
                 "postcode",
                 "rsin"
             ],
-            "time": "2020-10-16T13:11:38+00:00"
+            "time": "2020-10-22T07:32:38+00:00"
         },
         {
             "name": "conduction/landslide-bundle",
@@ -1879,6 +1879,20 @@
                 "lexer",
                 "parser",
                 "php"
+            ],
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Flexer",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-05-25T17:44:05+00:00"
         },
@@ -7440,6 +7454,20 @@
                 "push",
                 "sse",
                 "updates"
+            ],
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
             ],
             "time": "2020-05-27T14:53:11+00:00"
         },
