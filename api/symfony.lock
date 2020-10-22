@@ -22,9 +22,6 @@
     "bacon/bacon-qr-code": {
         "version": "2.0.2"
     },
-    "beberlei/doctrineextensions": {
-        "version": "v1.2.7"
-    },
     "behat/transliterator": {
         "version": "v1.2.0"
     },
@@ -41,9 +38,6 @@
         "version": "1.3.3"
     },
     "conduction/commongroundbundle": {
-        "version": "dev-master"
-    },
-    "conduction/landslide-bundle": {
         "version": "dev-master"
     },
     "dasprid/enum": {
@@ -252,7 +246,7 @@
         "version": "v0.3.3"
     },
     "php": {
-        "version": "7.3"
+        "version": "7.4"
     },
     "php-cs-fixer/diff": {
         "version": "v1.3.0"
