@@ -629,12 +629,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConductionNL/CommonGroundBundle.git",
-                "reference": "f9778a448fde63c4e69924838c7360ca7fe2f00f"
+                "reference": "a091ca4d3c70e7093aa408879d99e7241b6a3494"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/f9778a448fde63c4e69924838c7360ca7fe2f00f",
-                "reference": "f9778a448fde63c4e69924838c7360ca7fe2f00f",
+                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/a091ca4d3c70e7093aa408879d99e7241b6a3494",
+                "reference": "a091ca4d3c70e7093aa408879d99e7241b6a3494",
                 "shasum": ""
             },
             "require": {
@@ -660,7 +660,8 @@
                 "symfony/maker-bundle": "^1.11@stable",
                 "symfony/translation": "5.1.*",
                 "symfony/var-exporter": "^5.0",
-                "twig/extensions": "^1.5"
+                "twig/extensions": "^1.5",
+                "twig/twig": "2.13.1"
             },
             "conflict": {
                 "doctrine/dbal": "<2.5",
@@ -10383,20 +10384,20 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.14.0",
+            "version": "v2.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "d495243dade48c39b6a5261c26cdbd8c5703f6a0"
+                "reference": "57e96259776ddcacf1814885fc3950460c8e18ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d495243dade48c39b6a5261c26cdbd8c5703f6a0",
-                "reference": "d495243dade48c39b6a5261c26cdbd8c5703f6a0",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/57e96259776ddcacf1814885fc3950460c8e18ef",
+                "reference": "57e96259776ddcacf1814885fc3950460c8e18ef",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.2.5",
+                "php": ">=7.1.3",
                 "symfony/polyfill-ctype": "^1.8",
                 "symfony/polyfill-mbstring": "^1.3"
             },
@@ -10407,7 +10408,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.14-dev"
+                    "dev-master": "2.13-dev"
                 }
             },
             "autoload": {
@@ -10454,7 +10455,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-21T12:35:06+00:00"
+            "time": "2020-08-05T15:09:04+00:00"
         },
         {
             "name": "webimpress/safe-writer",
