@@ -22,7 +22,7 @@
             {% if person.naam.geslachtsnaam is defined %} value="{{ person.naam.geslachtsnaam }}"{% endif %}>
     </div>
     <div class="col-sm-12 col-lg-3">
-        <label class="input__label" for="familyName">{{ 'date of birth'|trans|capitalize }}</label>
+        <label class="input__label" for="dateOfBirth">{{ 'date of birth'|trans|capitalize }}</label>
         <input class="input__control input__control--text" id="dateOfBirth" type="date">
     </div>
     <div class="col-sm-12 col-lg-3">
@@ -55,9 +55,11 @@
 
     function getPeople() {
         $('.spinner').show();
-        let bsn = document.getElementById('bsn').value;
-        let voornamen = document.getElementById('givenNames').value;
-        let geslachtsnaam = document.getElementById('familyName').value;
+        let socialSecurityNumber = document.getElementById('bsn').value;
+        let givenNames = document.getElementById('givenNames').value;
+        let familyName = document.getElementById('familyName').value;
+        let dateOfBirth = document.getElementById('dateOfBirth').value;
+        let placeOfBirth = document.getElementById('placeOfBirth').value;
 
         let list = document.getElementById('persoonsLijst');
 
@@ -65,29 +67,48 @@
             list.firstChild.remove();
         }
 
-        if ((geslachtsnaam === "" || voornamen === "") && bsn === "") {
+        if ((familyName === "" || givenNames === "" || (dateOfBirth === "" && placeOfBirth === "")) && socialSecurityNumber === "") {
             let response = "De volgende velden zijn niet ingevoerd:<ul>";
             $('.spinner').hide();
-            if (geslachtsnaam === "") {
+            if (familyName === "") {
                 response = response + '<li> {{ 'family name'|trans|capitalize }} </li>';
             }
-            if (voornamen === "") {
+            if (givenNames === "") {
                 response = response + '<li> {{ 'given names'|trans|capitalize }} </li>';
             }
-            if (bsn === "") {
+            if (dateOfBirth === "") {
+                response = response + '<li> {{ 'date of birth'|trans|capitalize }} </li>';
+            }
+            if (placeOfBirth === "") {
+                response = response + '<li> {{ 'place of birth'|trans|capitalize }} </li>';
+            }
+            if (socialSecurityNumber === "") {
                 response = response + '<li>{{ 'social service number'|trans|capitalize }}</li>';
             }
             $('#persoonsLijst').append('<p>' + response + '</p>');
             return;
         }
 
-        let data = {
-            'naam.geslachtsnaam': geslachtsnaam,
-            'naam.voornamen': voornamen,
+        let data = {};
+        if(familyName !== "" && givenNames !== ""){
+            data['naam.geslachtsnaam'] = familyName;
+            data['naam.voornamen'] = givenNames;
         }
 
-        if(bsn !== ""){
-            data.burgerservicenummer = bsn;
+        if(dateOfBirth !== ""){
+            data['geboorte.datum'] = dateOfBirth;
+        }
+
+        if(placeOfBirth !== ""){
+            data['geboorte.plaats'] = placeOfBirth;
+        }
+        // let data = {
+        //     'naam.geslachtsnaam': familyName,
+        //     'naam.voornamen': givenNames,
+        // }
+
+        if(socialSecurityNumber !== ""){
+            data.burgerservicenummer = socialSecurityNumber;
         }
 
         $.ajax({
