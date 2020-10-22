@@ -92,7 +92,7 @@ class OrcController extends AbstractController
     /**
      * @Route("/subscriptions")
      * @Route("/subscriptions/{subscription}", name="subscription")
-     * @Security("is_granted(ROLE_user)")
+     * @Security("is_granted('ROLE_user')")
      * @Template
      */
     public function subscriptionsAction(Session $session, Request $request, CommonGroundService $commonGroundService, ApplicationService $applicationService, ParameterBagInterface $params, $subscription = false)
