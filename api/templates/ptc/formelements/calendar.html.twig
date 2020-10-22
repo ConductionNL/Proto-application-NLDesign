@@ -33,6 +33,25 @@
         color: black;
         border: 2px solid black !important;
     }
+    .blocked-option {
+        width: 100%;
+        display: block;
+        height: 100%;
+        background-color: lightgrey;
+        border: 1px solid lightgray;
+    }
+
+    .possible-option {
+        width: 100% ;
+        display: block ;
+        height: 100% ;
+        background-color: #148839 ;
+        border: 1px solid lightgray ;
+    }
+
+    .possible-option:hover {
+        background: limegreen;
+    }
 </style>
 <table class="table table--small-font">
     <thead>
@@ -190,7 +209,7 @@
             td.setAttribute('style', 'height: 40px; padding: 0;');
 
             let button = document.createElement('button');
-            button.setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: white; border: 1px solid lightgray;');
+            // button.setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: white; border: 1px solid lightgray;');
             button.type = 'button';
             button.value = days[i].children[0].innerHTML;
 
@@ -247,9 +266,14 @@
                 var optionEndDateMs = optionEndDate.getTime();
                 buttons[j].name = date.getDate() + ' ' + months[date.getMonth()] + ' ' + optionYear;
                 buttons[j].innerText = 'kies';
-                buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: #148839; border: 1px solid lightgray;');
+                // buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: #148839; border: 1px solid lightgray;');
+                buttons[j].classList.add('possible-option');
+                buttons[j].classList.remove('blocked-option');
                 if (currentWeek == arr[0] && currentYear == optionYear && (currentDay === (i + 1) || currentDay > (i + 1))) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    // buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
+
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else {
@@ -296,19 +320,23 @@
                 {#console.log(eventStartDate);#}
                 {#console.log(eventEndDate);#}
                 if (eventStartDate >= optionStartDateMs && eventStartDate < optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventEndDate > optionStartDateMs && eventEndDate < optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventStartDate < optionStartDateMs && eventEndDate > optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventStartDate === optionStartDate && eventEndDate === optionStartDate) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled')
                 }
