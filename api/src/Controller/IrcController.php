@@ -75,7 +75,7 @@ class IrcController extends AbstractController
 
     /**
      * @Route("/assents")
-     * @Security("is_granted('ROLE_scope.irc.assent.write')")
+     * @Security("is_granted('ROLE_scope.irc.assent.read')")
      * @Template
      */
     public function assentsAction(CommonGroundService $commonGroundService, ApplicationService $applicationService, Request $request)
