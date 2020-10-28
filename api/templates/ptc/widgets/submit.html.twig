@@ -65,13 +65,13 @@
                                             {% if item is iterable %}
                                                 {% for subKey, subItem in item %}
                                                     {% if 'http' in subItem and commonground_is_resource(subItem) %}
-                                                        <li>{{ commonground_resource(subItem).name|capitalize }}test6
+                                                        <li>{{ commonground_resource(subItem).name|capitalize }}
                                                         </li>
                                                     {% else %}
                                                         {% if subItem != '' %}
                                                             {% if subItem is iterable %}
                                                                 {% for item in subItem %}
-                                                                    <li>{{ item|capitalize }}test5</li>
+                                                                    <li>{{ item|capitalize }}</li>
                                                                 {% endfor %}
                                                             {% else %}
                                                                 <li style="margin-bottom: 0">
@@ -81,7 +81,7 @@
                                                                                 :</strong>
                                                                         </div>
                                                                         <div class="col-xs-12 col-md-6">
-                                                                            {{ subItem|capitalize }}test4
+                                                                            {{ subItem|capitalize }}
                                                                         </div>
                                                                     </div>
                                                                 </li>
@@ -91,10 +91,10 @@
                                                 {% endfor %}
                                             {% else %}
                                                 {% if 'http' in item and commonground_is_resource(item) %}
-                                                    <li>{{ commonground_resource(item).name|capitalize }}test3</li>
+                                                    <li>{{ commonground_resource(item).name|capitalize }}</li>
                                                 {% else %}
                                                     {% if item != '' %}
-                                                        <li>{{ item|capitalize }}test3</li>
+                                                        <li>{{ item|capitalize }}</li>
                                                     {% endif %}
                                                 {% endif %}
                                             {% endif %}
@@ -106,7 +106,7 @@
                                                 {{ commonground_resource(value).naam.voornamen }} {{ commonground_resource(value).naam.geslachtsnaam }}
                                                 <br>
                                             {% else %}
-                                                {{ commonground_resource(value).name }}test2<br>
+                                                {{ commonground_resource(value).name }}<br>
                                             {% endif %}
                                         {% else %}
                                             <div class="row">
@@ -114,7 +114,7 @@
                                                     <strong>{{ key|trans|capitalize }}:</strong>
                                                 </div>
                                                 <div class="col-xs-12 col-md-6">
-                                                    {{ value|capitalize }}test
+                                                    {{ value|capitalize }}
                                                 </div>
                                             </div>
                                         {% endif %}
@@ -133,25 +133,27 @@
                                             {% endif #}
                                     {% else %}
                                         {% if 'http' in property.value and commonground_is_resource(property.value) %}
-                                        {% if 'enkelvoudiginformatieobjecten' in property.value %}
-                                            {% set file = commonground_resource(property.value) %}
-                                            <a href="{{ path('app_drc_download',{'resource':file.id}) }}">{{ file.bestandsnaam }}</a>
+                                            {% if 'enkelvoudiginformatieobjecten' in property.value %}
+                                                {% set file = commonground_resource(property.value) %}
+                                                <a href="{{ path('app_drc_download',{'resource':file.id}) }}">{{ file.bestandsnaam }}</a>
                                             {% elseif commonground_resource(property.value)['@type'] is defined and commonground_resource(property.value)['@type'] == 'Cemetery' %}
-                                            {{ commonground_resource(property.value).reference }}<br>
+                                                {{ commonground_resource(property.value).reference }}<br>
                                             {% elseif commonground_resource(property.value)['@type'] is defined and commonground_resource(property.value)['@type'] == 'Ingeschrevenpersoon' %}
-                                            {{ commonground_resource(property.value).naam.voornamen }} {{ commonground_resource(property.value).naam.geslachtsnaam }}
-                                        <br>
-                                        {% elseif commonground_resource(property.value)['@type'] is defined and commonground_resource(property.value)['@type'] == 'Adres' %}
-                                            {{ commonground_resource(property.value).straat|capitalize }} {{ commonground_resource(property.value).huisnummer }}
+                                                {{ commonground_resource(property.value).naam.voornamen }} {{ commonground_resource(property.value).naam.geslachtsnaam }}
+                                                <br>
+                                            {% elseif commonground_resource(property.value)['@type'] is defined and commonground_resource(property.value)['@type'] == 'Adres' %}
+                                                {{ commonground_resource(property.value).straat|capitalize }} {{ commonground_resource(property.value).huisnummer }}
+                                            {% else %}
+                                                {{ commonground_resource(property.value).name|capitalize }}
+                                            {% endif %}
                                         {% else %}
-                                            {{ commonground_resource(property.value).name|capitalize }}
-                                        {% endif %}
-                                        {% else %}
-                                        {% if property.format == 'calendar' %}
-                                            {{ property.value|date('d-m-Y h:i','Europe/Paris') }}
-                                        {% else %}
-                                            {{ property.value|capitalize }}
-                                        {% endif %}
+                                            {% if property.format == 'calendar' %}
+                                                {% if property.value is not empty %}
+                                                    {{ property.value|date('d-m-Y h:i','Europe/Paris') }}
+                                                {% endif %}
+                                            {% else %}
+                                                {{ property.value|capitalize }}
+                                            {% endif %}
                                         {% endif %}
                                     {% endif %}
                                     </p>
