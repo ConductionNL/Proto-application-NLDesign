@@ -45,7 +45,7 @@ class BulkController extends AbstractController
         if ($request->isMethod('POST')) {
             $files = $request->files->all();
             if (count($files) > 0) {
-//                $html = '<table>';
+                $excel = '<table>';
                 foreach ($files as $key=>$file) {
                     $mime = $file->getClientMimeType();
                     if($mime == 'application/vnd.ms-excel' || $mime == 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' || $mime = 'application/octet-stream'){
@@ -57,19 +57,22 @@ class BulkController extends AbstractController
 
                         $sheets = $xlsx->getAllSheets();
 
-                        $this->CheckSheets($sheets);
+                        $excel = $this->CheckSheets($sheets, $excel);
 
                         unlink("$dir/{$file->getFileName()}");
-
-//                        $writer = IOFactory::createWriter($spreadsheet, 'Xlsx');
-//                        $filename = dirname(__FILE__, 3)."/var/spreadsheet.xlsx";
-//                        $writer->save($filename);
-//                        header('Content-Type: application/vnd.ms-excel');
-//                        header('Content-Disposition: attachment; filename=spreadsheet.xlsx');
-//                        readfile($filename);
-//                        unlink($filename); // deletes the temporary file
                     }
                 }
+                $filename = dirname(__FILE__, 3)."/var/file.xls";
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Html();
+                $spreadsheet = $reader->loadFromString($excel);
+                $spreadsheet->getDefaultStyle()->getAlignment()->setWrapText(true);
+                $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+                header('Content-Type: application/vnd.ms-excel');
+                header('Content-Disposition: attachment; filename="file.xls"');
+                $writer->save($filename);
+                flush();
+                readfile($filename);
+                unlink($filename); // deletes the temporary file
             }
 
         }
@@ -77,7 +80,7 @@ class BulkController extends AbstractController
         return $variables;
     }
 
-    public function CheckSheets($sheets) {
+    public function CheckSheets($sheets, $excel) {
         foreach($sheets as $sheet){
             $rows = $sheet->toArray();
 
@@ -86,25 +89,28 @@ class BulkController extends AbstractController
                 return;
             }
 
-            $this->CheckRows($rows);
+            $excel = $this->CheckRows($rows, $excel);
 
         }
+        return $excel;
     }
 
-    public function CheckRows($rows){
+    public function CheckRows($rows, $excel){
         foreach($rows as $key=>$row){
-
+            $excel.= '<tr>';
             //check if email is valid
             if (isset($row[1]) && filter_var($row[1], FILTER_VALIDATE_EMAIL)) {
                 $users = $this->commonGroundService->getResourceList(['component' => 'uc', 'type' => 'users'],['username' => $row[1]])['hydra:member'];
 
-                if (!count($users) > 0) {
+                if (count($users) < 1) {
                     //create person
                     $person = [];
                     if (!isset($row[0]) && isset($row[1])){
                         $name = explode('@', $row[1]);
                         $person['givenName'] = $name[0];
+                        $excel.= "<td></td>";
                     } else {
+                        $excel.= "<td style='background-color: green;'>{$row[0]}</td>";
                         $person['givenName'] = $row[0];
                     }
                     $emailObject = [];
@@ -121,50 +127,70 @@ class BulkController extends AbstractController
                     $user['password'] = (string) $password;
                     $user['person'] = $person['@id'];
                     $application = $this->commonGroundService->getResource(['component'=>'wrc', 'type'=>'applications', 'id'=>$this->params->get('app_id')]);
-                    $ogranization = $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'organizations', 'id' => $application['organization']['id']]);
-                    $user['organization'] = $ogranization;
+                    $organization = $this->commonGroundService->cleanUrl(['component' => 'wrc', 'type' => 'organizations', 'id' => $application['organization']['id']]);
+                    $user['organization'] = $organization;
+                    $excel.= "<td style='background-color: green;'>{$row[1]}</td>";
                     if (isset($row[2])) {
+                        $groups = $this->commonGroundService->getResourceList(['component' => 'uc', 'type' => 'groups'],['code' => $row[2]])['hydra:member'];
+                        if (count($groups) > 0){
+                            $excel.= "<td style='background-color: green;'>{$row[2]}</td>";
+                        } else {
+                            $excel.= "<td style='background-color: red;'>{$row[2]}</td>";
+                        }
                         $groupId = $this->GetGroup($row[2]);
                     } else {
                         $groupId = $this->GetGroup('users');
                     }
-                    $user['userGroups'] = [
-                        '/groups/'.$groupId,
-                    ];
+                    $user['userGroups'][] = '/groups/'.$groupId;
                     $user = $this->commonGroundService->createResource($user, ['component' => 'uc', 'type' => 'users']);
+
                 } else {
+                    //user found but is there a group set?
                     $user = $users[0];
-                    if (!isset($user['userGroups']) || isset($row[2])) {
-                        if (isset($row[2])) {
-                            $groupId = $this->GetGroup($row[2]);
+                    if (isset($row[2])) {
+                        //excel info
+                        if (isset($row[0])) {
+                            $excel.= "<td style='background-color: lightblue;'>{$row[0]}</td>";
                         } else {
-                            $groupId = $this->GetGroup('users');
+                            $excel.= "<td></td>";
+                        }
+                        $excel.= "<td style='background-color: lightblue;'>{$row[1]}</td>";
+                        $groups = $this->commonGroundService->getResourceList(['component' => 'uc', 'type' => 'groups'],['code' => $row[2]])['hydra:member'];
+                        if (count($groups) > 0){
+                            $excel.= "<td style='background-color: green;'>{$row[2]}</td>";
+                        } else {
+                            $excel.= "<td style='background-color: red;'>{$row[2]}</td>";
                         }
 
-                        $user['userGroups'] = [
-                            '/groups/'.$groupId,
-                        ];
+                        //add group to user
+                        $groupId = $this->GetGroup($row[2]);
+                        $user['userGroups'][] = '/groups/'.$groupId;
                         unset($user['dateCreated']);
+                        unset($user['dateModified']);
                         $this->commonGroundService->updateResource($user);
 
                     } else {
-                        //@todo change email cell to indicate excisting user and usergroup.
+                        //no group defined and user already exists
+                        if (isset($row[0])) {
+                            $excel.= "<td style='background-color: lightblue;'>{$row[0]}</td>";
+                        } else {
+                            $excel.= "<td></td>";
+                        }
+                        $excel.= "<td style='background-color: lightblue;'>{$row[1]}</td>";
                     }
-                    //@todo change email cell to indicate excisting user.
                 }
-
             } else {
-                //@todo set email cell to red to indicate an error.
+                //no valid email given
+                if (isset($row[0])) {
+                    $excel.= "<td style='background-color: red;'>{$row[0]}</td>";
+                } else {
+                    $excel.= "<td></td>";
+                }
+                $excel.= "<td style='background-color: red;'>{$row[1]}</td>";
             }
-
-            //temp code for visual feedback
-            if (!isset($row[0]) && isset($row[1])){
-                $name = explode('@', $row[1]);
-                echo "Row $key - naam: {$name[0]}, email: {$row[1]}<br>";
-            } else {
-                echo "Row $key - naam: {$row[0]}, email: {$row[1]}<br>";
-            }
+            $excel.= "</tr>";
         }
+        return $excel;
     }
 
     public function GetGroup($group) {
