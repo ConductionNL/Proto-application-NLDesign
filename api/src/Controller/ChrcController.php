@@ -239,53 +239,6 @@ class ChrcController extends AbstractController
     }
 
     /**
-     * @Route("/challenges/{id}")
-     * @Template
-     */
-    public function challengeAction(Session $session, Request $request, ApplicationService $applicationService, CommonGroundService $commonGroundService, ParameterBagInterface $params, $id)
-    {
-        $content = false;
-        $variables = $applicationService->getVariables();
-
-        // Lets provide this data to the template
-        $variables['query'] = $request->query->all();
-        $variables['post'] = $request->request->all();
-
-        // Lets find an appoptiate slug
-        $template = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => $params->get('app_id').'/challenge']);
-        $variables['resource'] = $commonGroundService->getResource(['component' => 'chrc', 'type' => 'tenders', 'id' => $id]);
-
-        if ($template && array_key_exists('content', $template)) {
-            $content = $template['content'];
-        }
-
-        // Lets see if there is a post to procces
-        if ($request->isMethod('POST')) {
-            $resource = $request->request->all();
-            if (array_key_exists('@component', $resource)) {
-                // Passing the variables to the resource
-                $configuration = $commonGroundService->saveResource($resource, ['component' => $resource['@component'], 'type' => $resource['@type']]);
-            }
-        }
-
-        // Create the template
-        if ($content) {
-            $template = $this->get('twig')->createTemplate($content);
-            $template = $template->render($variables);
-        } else {
-            $template = $this->render('404.html.twig', $variables);
-
-            return $template;
-        }
-
-        return $response = new Response(
-            $template,
-            Response::HTTP_OK,
-            ['content-type' => 'text/html']
-        );
-    }
-
-    /**
      * @Route("/challenges")
      * @Template
      */
@@ -298,58 +251,76 @@ class ChrcController extends AbstractController
         $variables['query'] = $request->query->all();
         $variables['post'] = $request->request->all();
 
-        // Lets find an appoptiate slug
-        $template = $commonGroundService->getResourceList(['component' => 'wrc', 'type' => 'applications', 'id' => $params->get('app_id').'/challenges']);
+        // Get resource
+        $variables['resources'] = $commonGroundService->getResource(['component' => 'chrc', 'type' => 'tenders'], $variables['query'])['hydra:member'];
 
-        // Get resources
-        $variables['resources'] = $commonGroundService->getResource(['component' => 'chrc', 'type' => 'tenders']);
+        return $variables;
+    }
 
+    /**
+     * @Route("/challenges/{id}")
+     * @Template
+     */
+    public function challengeAction(Session $session, Request $request, ApplicationService $applicationService, CommonGroundService $commonGroundService, ParameterBagInterface $params, $id)
+    {
+//        $content = false;
+        $variables = [];
+
+        // Lets provide this data to the template
+        $variables['id'] = $id;
+        $variables['query'] = $request->query->all();
+        $variables['post'] = $request->request->all();
+
+        // Get resource
+        $variables['tender'] = $commonGroundService->getResource(['component' => 'chrc', 'type' => 'tenders', 'id' => $id], $variables['query']);
+
+        return $variables;
+    }
+
+    /**
+     * @Route("/challengeplaatsen")
+     * @Template
+     */
+    public function challengeplaatsenAction(Session $session, Request $request, ApplicationService $applicationService, CommonGroundService $commonGroundService, ParameterBagInterface $params)
+    {
+        $variables = [];
+        // Lets provide this data to the template
+        $variables['query'] = $request->query->all();
+        $variables['post'] = $request->request->all();
+
+        // Get resource
+        $variables['resources'] = $commonGroundService->getResource(['component' => 'mrc', 'type' => 'job_postings'], $variables['query'])['hydra:member'];
+
+        // Lets see if there is a post to procces
         if ($request->isMethod('POST')) {
-            if (isset($_POST['filter'])) {
-                $parameters = $request->request->all();
+            $resource = $request->request->all();
 
-                if (empty($parameters['name']) && empty($parameters['keywords']) && empty($parameters['dateSubmitted']) && empty($parameters['minBudget']) && empty($parameters['maxBudget'])) {
-                    unset($parameters);
-                    $variables['resources'] = $commonGroundService->getResourceList(['component' => 'chrc', 'type' => 'tenders']);
-                } else {
-                    if (isset($parameters['dateSubmitted']) && !empty($parameters['dateSubmitted'])) {
-                        $date = $parameters['dateSubmitted'];
+            //check if this user is already a participant
+            $participants = $commonGroundService->getResourceList(['component' => 'edu', 'type' => 'participants'], ['person' => $variables['user']['@id']])['hydra:member'];
 
-                        // Because you cant filter for 1 date we have to filter between 2 dates
-                        $date1 = date('Y-m-d', strtotime($date.' - 1 day'));
-                        $date2 = date('Y-m-d', strtotime($date.' + 1 day'));
-
-                        $variables['resources'] = $commonGroundService->getResourceList(['component' => 'chrc', 'type' => 'tenders'], ['name' => $parameters['name'], 'description' => $parameters['keywords'], 'budget[between]' => $parameters['minBudget'].'..'.$parameters['maxBudget'], 'created[strictly_after]' => $date1, 'created[strictly_before]' => $date2]);
-                    } else {
-                        $variables['resources'] = $commonGroundService->getResourceList(['component' => 'chrc', 'type' => 'tenders'], ['name' => $parameters['name'], 'description' => $parameters['keywords'], 'budget[between]' => $parameters['minBudget'].'..'.$parameters['maxBudget']]);
-                    }
-
-                    unset($parameters);
-                }
-
-                return $this->redirectToRoute('app_tender_challenges');
+            $participant = [];
+            if (count($participants) > 0) { //if this user is already a participant
+                $participant = $participants[0];
+                /*
+                                //add name, description and participant to the new job posting resource
+                                $resource['name'] = $variables['jobposting']['name'];
+                                $resource['description'] = $variables['jobposting']['description'];
+                                $resource['title'] = $variables['jobposting']['title'];
+                                $resource['employmentType'] = $variables['jobposting']['employmentType'];
+                                $resource['jobStartDate'] = $variables['jobposting']['jobStartDate'];
+                                $resource['validThrough'] = $variables['jobposting']['validThrough'];
+                                $resource['standardHours'] = $variables['jobposting']['standardHours'];
+                                $resource['hiringOrganization'] = $participant['person'];
+                */
+                //Komt dus een zelfde verhaal zoals uitgelegd bij marks voorbeeld alleen hier ga je naar chrc type tenders
+                //create the result for this participant
+                $commonGroundService->saveResource($resource, ['component' => 'chrc', 'type' => 'tenders']);
             }
+
+            return $this->redirectToRoute('app_chrc_challenges');
         }
 
-        if ($template && array_key_exists('content', $template)) {
-            $content = $template['content'];
-        }
-
-        // Create the template
-        if ($content) {
-            $template = $this->get('twig')->createTemplate($content);
-            $template = $template->render($variables);
-        } else {
-            $template = $this->render('404.html.twig', $variables);
-
-            return $template;
-        }
-
-        return $response = new Response(
-            $template,
-            Response::HTTP_OK,
-            ['content-type' => 'text/html']
-        );
+        return $variables;
     }
 
     /**
@@ -359,21 +330,17 @@ class ChrcController extends AbstractController
     public function proposalAction(Session $session, Request $request, ApplicationService $applicationService, CommonGroundService $commonGroundService, ParameterBagInterface $params, $id)
     {
         $content = false;
-        $variables = $applicationService->getVariables();
+        $variables = [];
 
         // Lets provide this data to the template
         $variables['query'] = $request->query->all();
         $variables['post'] = $request->request->all();
 
         // Lets find an appoptiate slug
-        $template = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => $params->get('app_id').'/proposal']);
         $variables['resource'] = $commonGroundService->getResource(['component' => 'chrc', 'type' => 'proposals', 'id' => $id]);
 
-        if ($template && array_key_exists('content', $template)) {
-            $content = $template['content'];
-        }
-
         // Lets see if there is a post to procces
+        /*
         if ($request->isMethod('POST')) {
             $resource = $request->request->all();
             if (array_key_exists('@component', $resource)) {
@@ -381,22 +348,9 @@ class ChrcController extends AbstractController
                 $configuration = $commonGroundService->saveResource($resource, ['component' => $resource['@component'], 'type' => $resource['@type']]);
             }
         }
+        */
 
-        // Create the template
-        if ($content) {
-            $template = $this->get('twig')->createTemplate($content);
-            $template = $template->render($variables);
-        } else {
-            $template = $this->render('404.html.twig', $variables);
-
-            return $template;
-        }
-
-        return $response = new Response(
-            $template,
-            Response::HTTP_OK,
-            ['content-type' => 'text/html']
-        );
+        return $variables;
     }
 
     /**
