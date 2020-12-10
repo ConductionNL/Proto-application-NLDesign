@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "56548c54fd28431e8e19c84121bb0615",
+    "content-hash": "8fc0aa055ba342d591f4d92fed9eb175",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -681,12 +681,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ConductionNL/CommonGroundBundle.git",
-                "reference": "fc4df5571aba8ac116c6df30a8ace865485360e0"
+                "reference": "e41d619572a0a3d13b4130d4c64822264542a148"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/fc4df5571aba8ac116c6df30a8ace865485360e0",
-                "reference": "fc4df5571aba8ac116c6df30a8ace865485360e0",
+                "url": "https://api.github.com/repos/ConductionNL/CommonGroundBundle/zipball/e41d619572a0a3d13b4130d4c64822264542a148",
+                "reference": "e41d619572a0a3d13b4130d4c64822264542a148",
                 "shasum": ""
             },
             "require": {
@@ -764,19 +764,19 @@
                 "postcode",
                 "rsin"
             ],
-            "time": "2020-10-15T09:34:53+00:00"
+            "time": "2020-12-09T09:31:11+00:00"
         },
         {
             "name": "conduction/landkitbundle",
             "version": "dev-main",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ConductionNL/LandKitBundle.git",
+                "url": "https://github.com/ConductionNL/LandkitBundle.git",
                 "reference": "13901f32d4b8dbcd6b9182107f80039065e0a2ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ConductionNL/LandKitBundle/zipball/13901f32d4b8dbcd6b9182107f80039065e0a2ba",
+                "url": "https://api.github.com/repos/ConductionNL/LandkitBundle/zipball/13901f32d4b8dbcd6b9182107f80039065e0a2ba",
                 "reference": "13901f32d4b8dbcd6b9182107f80039065e0a2ba",
                 "shasum": ""
             },
@@ -2064,20 +2064,6 @@
                 "parser",
                 "php"
             ],
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Flexer",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-25T17:44:05+00:00"
         },
         {
@@ -2265,20 +2251,6 @@
                 "database",
                 "orm"
             ],
-            "funding": [
-                {
-                    "url": "https://www.doctrine-project.org/sponsorship.html",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://www.patreon.com/phpdoctrine",
-                    "type": "patreon"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/doctrine/orm",
-                    "type": "tidelift"
-                }
-            ],
             "time": "2020-05-26T16:03:49+00:00"
         },
         {
@@ -2455,6 +2427,7 @@
                 "reflection",
                 "static"
             ],
+            "abandoned": "roave/better-reflection",
             "time": "2020-03-27T11:06:43+00:00"
         },
         {
@@ -8113,20 +8086,6 @@
                 "push",
                 "sse",
                 "updates"
-            ],
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
             ],
             "time": "2020-05-27T14:53:11+00:00"
         },
