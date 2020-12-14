@@ -10,7 +10,7 @@ info:
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/pan) / [zip](https://github.com/ConductionNL/pan/archive/master.zip)
     - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
-    - Datamodel: [postman](/schema/pan.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [modelio (zip)](/schema/Datamodel_Modelio.zip) 
+    - Datamodel: [postman](schema/pan.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
     
@@ -1008,7 +1008,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/AuditTrail:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/AuditTrail-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/AuditTrail-write'
         description: 'The updated AuditTrail resource'
@@ -1890,7 +1914,31 @@ paths:
           description: 'Resource not found'
       requestBody:
         content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/ChangeLog:jsonld-write'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          application/hal+json:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
           application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          applications/x-yaml:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          text/csv:
+            schema:
+              $ref: '#/components/schemas/ChangeLog-write'
+          text/html:
             schema:
               $ref: '#/components/schemas/ChangeLog-write'
         description: 'The updated ChangeLog resource'
@@ -1898,6 +1946,7 @@ components:
   schemas:
     AuditTrail-read:
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         id:
@@ -2022,9 +2071,11 @@ components:
           nullable: true
     AuditTrail-write:
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
     'AuditTrail:jsonld-read':
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         '@context':
@@ -2158,6 +2209,7 @@ components:
           nullable: true
     'AuditTrail:jsonld-write':
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         '@context':
@@ -2171,6 +2223,7 @@ components:
           type: string
     ChangeLog-read:
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         id:
@@ -2217,9 +2270,11 @@ components:
           nullable: true
     ChangeLog-write:
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
     'ChangeLog:jsonld-read':
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         '@context':
@@ -2275,6 +2330,7 @@ components:
           nullable: true
     'ChangeLog:jsonld-write':
       type: object
+      additionalProperties: true
       description: 'An resource representing a log line.'
       properties:
         '@context':
@@ -2391,12 +2447,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-10 13:25:21'
+        example: '2020-12-10 15:55:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-10 13:25:21'
+        example: '2020-12-10 15:55:04'
     required: []
   AuditTrail-write:
     properties:
@@ -2444,12 +2500,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2020-12-10 13:25:21'
+        example: '2020-12-10 15:55:04'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2020-12-10 13:25:21'
+        example: '2020-12-10 15:55:04'
     required: []
   ChangeLog-write:
     properties:

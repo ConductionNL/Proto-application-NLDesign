@@ -35,11 +35,11 @@ api_platform:
         - Repository: [online](%env(APP_REPRO)%) / [zip](%env(APP_REPRO)%/archive/master.zip)
         - Docker Image: [online](%env(APP_CONTAINER)%) 
         - Datamodel: [postman](schema/%env(APP_NAME)%.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
-        
+
         %env(APP_DESCRIPTION)%         
-    
-    version: '%env(APP_VERSION)%'  
-    
+
+    version: '%env(APP_VERSION)%'
+
     # Lets configure the api platform bundle to display the docs in confrmation with common ground standards 
     show_webby: false
     enable_swagger_ui: false
@@ -50,10 +50,10 @@ api_platform:
         pagination:
             client_items_per_page: true # Disabled by default
             items_per_page_parameter_name: limit # Default value
-            
+
     # In the NL api strategie we use snake case for naming
     # name_converter: 'Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter'
-    
+
     # Lets confirm to JSON-HA: first, as per common ground. But allow other serializers
     formats:
         jsonld:   ['application/ld+json','application/json+ld']
@@ -64,17 +64,27 @@ api_platform:
         yaml:     ['application/x-yaml']
         csv:      ['text/csv']
         html:     ['text/html']
-    
-    # Varnish integration, remove if unwanted
-    # http_cache:
-    #    invalidation:
-    #        enabled: true
-    #        varnish_urls: ['%env(VARNISH_URL)%']
-    #    max_age: 0
-    #    shared_max_age: 3600
-    #    vary: ['Content-Type', 'Authorization']
-    #    public: true
-        
+    patch_formats:
+        jsonld:     ['application/ld+json']
+        json:       ['application/json']
+        jsonhal:    ['application/hal+json']
+        jsonapi:    ['application/vnd.api+json']
+        jsonmerge:  ['application/merge-patch+json']
+        xml:        ['application/xml']
+        yaml:       ['applications/x-yaml']
+        csv:        ['text/csv']
+        html:       ['text/html']
+
+        # Varnish integration, remove if unwanted
+        # http_cache:
+        #    invalidation:
+        #        enabled: true
+        #        varnish_urls: ['%env(VARNISH_URL)%']
+        #    max_age: 0
+        #    shared_max_age: 3600
+        #    vary: ['Content-Type', 'Authorization']
+        #    public: true
+
     # Mercure integration, remove if unwanted
     # mercure:
     #    hub_url: '%env(MERCURE_SUBSCRIBE_URL)%'

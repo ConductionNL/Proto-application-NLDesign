@@ -39,7 +39,7 @@ parameters:
     env(APP_INTERNAL):
     env(APP_BUILD_ALL_FIXTURES):
     env(APP_URL): "http://localhost"
-    env(APP_SESSION_DURATION): 900
+    env(APP_SESSION_DURATION): "900"
 
     env(APP_CONTAINER): ""
     env(APP_REPRO): ""
@@ -72,7 +72,6 @@ parameters:
     app_internal: "%env(APP_INTERNAL)%"
     app_build_all_fixtures: "%env(APP_BUILD_ALL_FIXTURES)%"
     app_session_duration: "%env(APP_SESSION_DURATION)%"
-    app_url: "%env(APP_URL)%"
 
     # Organisatie details
     env(GOOGLE_TAG_MANAGER_ID): ""
