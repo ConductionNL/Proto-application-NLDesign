@@ -36,6 +36,10 @@ if [ "$1" = 'php-fpm' ] || [ "$1" = 'php' ] || [ "$1" = 'bin/console' ]; then
 		composer install --prefer-dist --no-progress --no-suggest --no-interaction
 	#fi
 
+	if [ "$APP_DEPENDENCIES" != "" ]; then
+		composer require $APP_DEPENDENCIES
+	fi
+
 	# Lets setup an nlx certificate if needed
 	#if [ "$APP_ENV" != 'prod' ]; then
 		mkdir -p /cert

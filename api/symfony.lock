@@ -28,9 +28,6 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
-    "brick/math": {
-        "version": "0.9.1"
-    },
     "composer/ca-bundle": {
         "version": "1.2.6"
     },
@@ -45,15 +42,6 @@
     },
     "conduction/commongroundbundle": {
         "version": "dev-master"
-    },
-    "conduction/landkitbundle": {
-        "version": "dev-main"
-    },
-    "conduction/nldesignbundle": {
-        "version": "dev-master"
-    },
-    "conduction/rocketbundle": {
-        "version": "dev-main"
     },
     "dasprid/enum": {
         "version": "1.0.2"
@@ -173,9 +161,6 @@
     "endroid/qr-code-bundle": {
         "version": "3.4.2"
     },
-    "fgrosse/phpasn1": {
-        "version": "v2.1.1"
-    },
     "fig/link-util": {
         "version": "1.0.0"
     },
@@ -211,6 +196,9 @@
     },
     "laminas/laminas-code": {
         "version": "3.4.1"
+    },
+    "laminas/laminas-escaper": {
+        "version": "2.6.1"
     },
     "laminas/laminas-eventmanager": {
         "version": "3.3.0"
@@ -435,12 +423,6 @@
         "files": [
             "config/packages/security_checker.yaml"
         ]
-    },
-    "spomky-labs/aes-key-wrap": {
-        "version": "v6.0.0"
-    },
-    "spomky-labs/base64url": {
-        "version": "v2.0.3"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",

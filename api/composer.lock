@@ -3045,9 +3045,6 @@
                 "laminas/laminas-zendframework-bridge": "^1.1",
                 "php": "^7.3 || ~8.0.0"
             },
-            "conflict": {
-                "phpspec/prophecy": "<1.9.0"
-            },
             "replace": {
                 "zendframework/zend-code": "^3.4.1"
             },
@@ -3058,24 +3055,20 @@
                 "laminas/laminas-stdlib": "^3.3.0",
                 "phpunit/phpunit": "^9.4.2"
             },
-            "suggest": {
-                "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
-                "laminas/laminas-stdlib": "Laminas\\Stdlib component"
-            },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Laminas\\Code\\": "src/"
+                    "Laminas\\Escaper\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
-            "description": "Extensions to the PHP Reflection API, static code scanning, and code generation",
+            "description": "Securely and safely escape HTML, HTML attributes, JavaScript, CSS, and URLs",
             "homepage": "https://laminas.dev",
             "keywords": [
-                "code",
+                "escaper",
                 "laminas"
             ],
             "support": {
