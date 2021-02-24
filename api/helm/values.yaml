@@ -11,13 +11,14 @@ settings:
   repro: https://github.com/ConductionNL/pan
   demo: www.westfriesland.commonground.nu
   domain: zuid-drecht.nl
-  subdomain: 
-  subpath: 
+  subdomain: pan
+  subpath: pan
   subpathRouting: true
   env: dev
   web: false
   debug: 1
   cache: false
+  type: component
   replicaCount: 1
   corsAllowOrigin: ['*']
   trustedHosts: '^.+$'
