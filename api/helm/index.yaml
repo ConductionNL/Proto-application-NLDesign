@@ -3,10 +3,10 @@ entries:
   pan:
   - apiVersion: v1
     appVersion: V1.0
-    created: "2020-12-02T13:39:30.9491215Z"
+    created: "2021-02-18T04:58:05.6528374Z"
     description: '&quot;Naast deze JSON rest API is er ook een [graphql](/graphql)
       interface beschikbaar.&quot;'
-    digest: 924e0f15a66bf2b3058b6e993b702096a66852cd4b4142ed54f1ac4d21ae4210
+    digest: 93acef4cf6e69ea484be94e4005406b26d1650b8c3920b19a2f98a505551d8dc
     home: www.zuid-drecht.nl
     icon: www.zuid-drecht.nl
     name: pan
@@ -18,7 +18,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 11.10.0
-    created: "2020-12-02T13:39:30.9643575Z"
+    created: "2021-02-18T04:58:05.6666056Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,4 +47,4 @@ entries:
     urls:
     - charts/postgresql-10.1.1.tgz
     version: 10.1.1
-generated: "2020-12-02T13:39:30.9368295Z"
+generated: "2021-02-18T04:58:05.6239257Z"

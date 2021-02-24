@@ -170,6 +170,9 @@
             ".php_cs.dist"
         ]
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.1"
+    },
     "gedmo/doctrine-extensions": {
         "version": "v2.4.37"
     },
@@ -215,6 +218,9 @@
     "myclabs/deep-copy": {
         "version": "1.10.2"
     },
+    "myclabs/php-enum": {
+        "version": "1.7.6"
+    },
     "nelmio/cors-bundle": {
         "version": "1.5",
         "recipe": {
@@ -236,11 +242,20 @@
     "ocramius/proxy-manager": {
         "version": "2.2.3"
     },
+    "pclzip/pclzip": {
+        "version": "2.8.2"
+    },
     "phar-io/manifest": {
         "version": "1.0.3"
     },
     "phar-io/version": {
         "version": "2.0.1"
+    },
+    "phenx/php-font-lib": {
+        "version": "0.5.2"
+    },
+    "phenx/php-svg-lib": {
+        "version": "v0.3.3"
     },
     "php": {
         "version": "7.4"
@@ -256,6 +271,12 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phpoffice/common": {
+        "version": "0.2.9"
+    },
+    "phpoffice/phpword": {
+        "version": "0.17.0"
     },
     "phpspec/prophecy": {
         "version": "v1.10.3"
@@ -327,6 +348,9 @@
         "files": [
             "config/packages/ramsey_uuid_doctrine.yaml"
         ]
+    },
+    "sabberworm/php-css-parser": {
+        "version": "8.3.1"
     },
     "sebastian/code-unit": {
         "version": "1.0.8"
@@ -584,6 +608,9 @@
     },
     "symfony/property-info": {
         "version": "v4.3.1"
+    },
+    "symfony/proxy-manager-bridge": {
+        "version": "v5.1.10"
     },
     "symfony/routing": {
         "version": "4.2",
