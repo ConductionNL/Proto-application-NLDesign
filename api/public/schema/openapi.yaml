@@ -1,15 +1,15 @@
 openapi: 3.0.2
 info:
-  title: 'Proto Applicatie NL Design'
+  title: ''
   version: V1.0
   description: |
     API Details
-    - Component: Proto Applicatie NL Design
+    - Component: 
     - Reference: pan
     - Enviroment: dev
     - Version: V1.0
     - Repository: [online](https://github.com/ConductionNL/pan) / [zip](https://github.com/ConductionNL/pan/archive/master.zip)
-    - Docker Image: [online](https://hub.docker.com/repository/docker/conduction/pc-php) 
+    - Docker Image: [online]() 
     - Datamodel: [postman](schema/pan.postman_collection.json) / [oas](schema/openapi.yaml) / [pdf](schema/datamodel.pdf) / [modelio (zip)](schema/Datamodel_Modelio.zip) 
     
     Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.         
@@ -2391,12 +2391,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-05 09:35:19'
+        example: '2021-03-01 13:39:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-05 09:35:19'
+        example: '2021-03-01 13:39:17'
     required: []
   AuditTrail-write:
     properties:
@@ -2444,12 +2444,12 @@ definitions:
         description: 'The moment this request was created'
         type: string
         format: date-time
-        example: '2021-02-05 09:35:19'
+        example: '2021-03-01 13:39:17'
       dateModified:
         description: 'The moment this request last Modified'
         type: string
         format: date-time
-        example: '2021-02-05 09:35:19'
+        example: '2021-03-01 13:39:17'
     required: []
   ChangeLog-write:
     properties:

@@ -7,10 +7,7 @@ settings:
   projectName: pan
   name: pan
   version: V1.0
-  majorVersion: v1
-  id: 1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e
   description: 'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'
-  type: application
   repro: https://github.com/ConductionNL/pan
   demo: www.westfriesland.commonground.nu
   domain: zuid-drecht.nl
