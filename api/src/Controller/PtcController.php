@@ -63,8 +63,12 @@ class PtcController extends AbstractController
     public function indexAction(Session $session, Request $request, CommonGroundService $commonGroundService, ApplicationService $applicationService, ParameterBagInterface $params)
     {
         $variables = $applicationService->getVariables();
-        $variables['processes'] = $commonGroundService->getResourceList(['component' => 'ptc', 'type' => 'process_types'], ['order[name]' => 'asc', 'limit' => 100])['hydra:member'];
-
+        /*@todo Dit is uitgecomment ipv verwijderd zodat we alles weer netjes terug kunnen zetten als dit nodig is*/
+        $variables['processes'] = []; //= $commonGroundService->getResourceList(['component' => 'ptc', 'type' => 'process_types'], ['order[name]' => 'asc', 'limit' => 100])['hydra:member'];
+        $verhuizen = $commonGroundService->getResource(['component' => 'ptc', 'type' => 'process_types', 'id' => 'c8de2851-332d-4284-b86e-ba0615694427']);
+        $parkeervergunning = $commonGroundService->getResource(['component' => 'ptc', 'type' => 'process_types', 'id' => '993cefcc-de42-46f5-9289-5f24df5dd3c7']);;
+        $balieafspraak = $commonGroundService->getResource(['component' => 'ptc', 'type' => 'process_types', 'id' => '32293766-8b3a-43ee-9f16-ed67234ac309']);
+        array_push($variables['processes'], $balieafspraak, $parkeervergunning,$verhuizen);
         return $variables;
     }
 
