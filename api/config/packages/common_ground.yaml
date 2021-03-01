@@ -44,6 +44,7 @@ parameters:
     env(APP_TYPE): "component"
   
     app_env: "%env(APP_ENV)%"
+    app_id: "%env(APP_ID)%"
     app_container: "%env(APP_CONTAINER)%"
     app_debug: "%env(APP_DEBUG)%"
     app_cache: "%env(APP_CACHE)%"

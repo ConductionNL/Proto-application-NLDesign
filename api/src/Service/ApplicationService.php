@@ -38,11 +38,12 @@ class ApplicationService
     public function getVariables()
     {
         $variables = [];
-
         if ($this->params->get('app_id')) {
-            $variables['application'] = $this->commonGroundService->getResource(['component'=>'wrc', 'type'=>'applications', 'id'=>$this->params->get('app_id')]);
-            $variables['organization'] = $this->commonGroundService->getResource(['component'=>'wrc', 'type'=>'organizations', 'id'=> $variables['application']['organization']['id']]);
+            $variables['application'] = $this->commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => $this->params->get('app_id')]);
+            $variables['defaultConfiguration'] = $variables['application']['defaultConfiguration'];
+            $variables['organization'] = $this->commonGroundService->getResource(['component' => 'wrc', 'type' => 'organizations', 'id' => $variables['application']['organization']['id']]);
         }
+//        var_dump($variables);
 
         // Lets handle the loading of a product is we have one
         $resource = $this->request->get('resource');
@@ -53,7 +54,7 @@ class ApplicationService
         // Lets handle a posible login
         $bsn = $this->request->get('bsn');
         if ($bsn || $bsn = $this->request->query->get('bsn')) {
-            $user = $this->commonGroundService->getResource(['component'=>'brp', 'type'=>'ingeschrevenpersonen', 'id'=>$bsn]);
+            $user = $this->commonGroundService->getResource(['component' => 'brp', 'type' => 'ingeschrevenpersonen', 'id' => $bsn]);
             $this->session->set('user', $user);
         }
         $kvk = $this->request->get('kvk');
@@ -62,10 +63,10 @@ class ApplicationService
                 // Base URI is used with relative requests
                 'base_uri' => 'https://api.kvk.nl',
                 // You can set any number of default request options.
-                'timeout'  => 2.0,
+                'timeout' => 2.0,
             ]);
 
-            $response = $client->request('GET', '/api/v2/testsearch/companies?q=test&mainBranch=true&branch=false&branchNumber='.$kvk);
+            $response = $client->request('GET', '/api/v2/testsearch/companies?q=test&mainBranch=true&branch=false&branchNumber=' . $kvk);
             $company = json_decode($response->getBody()->getContents(), true);
             $this->session->set('company', $company['data']['items'][0]);
         }
@@ -111,7 +112,7 @@ class ApplicationService
             $this->session->set('requestType', $requestType);
 
             /* @todo translation */
-            $this->flash->add('success', 'Verzoek voor '.$requestType['name'].' ingeladen');
+            $this->flash->add('success', 'Verzoek voor ' . $requestType['name'] . ' ingeladen');
         }
 
         if ($this->session->get('request')) {

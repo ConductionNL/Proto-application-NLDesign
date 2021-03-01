@@ -33,7 +33,14 @@ class ZZController extends AbstractController
     public function indexAction(Session $session, Request $request, CommonGroundService $commonGroundService, ApplicationService $applicationService, ParameterBagInterface $params, string $slug = 'home')
     {
         $content = false;
-        //$variables = $applicationService->getVariables();
+        $variables = $applicationService->getVariables();
+        if ($params->get('app_id')) {
+            $variables['application'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => $params->get('app_id')]);
+            $variables['defaultConfiguration'] = $variables['application']['defaultConfiguration'];
+            $variables['organization'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'organizations', 'id' => $variables['application']['organization']['id']]);
+        }
+//        var_dump($variables['defaultConfiguration']);
+//        die;
 
         // Lets provide this data to the template
         $variables['query'] = $request->query->all();
@@ -62,6 +69,8 @@ class ZZController extends AbstractController
             }
         }
 
+//        var_dump($variables);
+//        die;
         // Create the template
         if ($content) {
             $twigTemplate = $this->get('twig')->createTemplate($content);
