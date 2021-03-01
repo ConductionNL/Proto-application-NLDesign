@@ -55,6 +55,7 @@ class ZZController extends AbstractController
 
         // Lets find an appoptiate slug
         $template = $commonGroundService->getResource(['component'=>'wrc', 'type'=>'applications', 'id'=> $params->get('app_id').'/'.$slug]);
+//        var_dump($template['content']);
 
         if ($template && array_key_exists('content', $template)) {
             $content = $template['content'];
