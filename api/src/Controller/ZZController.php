@@ -35,12 +35,10 @@ class ZZController extends AbstractController
         $content = false;
         $variables = $applicationService->getVariables();
         if ($params->get('app_id')) {
-            $variables['application'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => '1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e']); /* @todo lekker hacky */
+            $variables['application'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => $params->get('app_id')]); /* @todo lekker hacky */
             $variables['defaultConfiguration'] = $variables['application']['defaultConfiguration'];
             $variables['organization'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'organizations', 'id' => $variables['application']['organization']['id']]);
         }
-//        var_dump($variables['defaultConfiguration']);
-//        die;
 
         // Lets provide this data to the template
         $variables['query'] = $request->query->all();
