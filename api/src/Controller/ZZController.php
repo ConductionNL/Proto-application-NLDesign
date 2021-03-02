@@ -34,11 +34,11 @@ class ZZController extends AbstractController
     {
         $content = false;
         $variables = $applicationService->getVariables();
-//        if ($params->get('app_id')) {
+        if ($params->get('app_id')) {
             $variables['application'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'applications', 'id' => '1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e']); /* @todo lekker hacky */
             $variables['defaultConfiguration'] = $variables['application']['defaultConfiguration'];
             $variables['organization'] = $commonGroundService->getResource(['component' => 'wrc', 'type' => 'organizations', 'id' => $variables['application']['organization']['id']]);
-//        }
+        }
 //        var_dump($variables['defaultConfiguration']);
 //        die;
 
@@ -54,7 +54,7 @@ class ZZController extends AbstractController
         $variables['slug'] = $slug;
 
         // Lets find an appoptiate slug
-        $template = $commonGroundService->getResource(['component'=>'wrc', 'type'=>'applications', 'id'=>'1ef30b69-6b28-4fbd-a0cd-83d6ff3c505e/'.$slug]);
+        $template = $commonGroundService->getResource(['component'=>'wrc', 'type'=>'applications', 'id'=> $params->get('app_id').'/'.$slug]);
 //        var_dump($template['content']);
 
         if ($template && array_key_exists('content', $template)) {
