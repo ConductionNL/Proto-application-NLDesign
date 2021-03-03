@@ -374,15 +374,19 @@
             let testData = document.getElementById('testData');
             let time = timeFrame.split('-');
 
+            // console.log(date);
+            // console.log(time);
+
             testData.innerText = 'Gekozen datum: ' + date + ' tussen: ' + time[0] + ' - ' + time[1];
 
             let date2 = date.split(' ');
+            // console.log(date2[1]);
             let month = getMonthFromString(date2[1]);
 
             time[0] = time[0].replace(/\s/g, '');
             time[1] = time[1].replace(/\s/g, '');
 
-            console.log(month);
+            // console.log(month);
             month = parseInt(month);
             if (month < 10) {
                 month = month.toString();
@@ -414,8 +418,9 @@
             // console.log(formattedSelectedDate);
             let hiddenInput = document.getElementById('calendarValue');
 
+            // console.log(formattedSelectedDate);
             //hiddenInput.value = formattedSelectedDate;
-            hiddenInput.value = '2021-12-12 12:12'
+            hiddenInput.value = formattedSelectedDate
 
             // console.log(startDate);
 
@@ -466,6 +471,32 @@
     }
 
     function getMonthFromString(mon) {
+        switch(mon){
+            case 'Januari':
+                mon = 'January';
+                break;
+            case 'Februari':
+                mon = 'February';
+                break;
+            case 'Maart':
+                mon = 'March';
+                break;
+            case 'Mei':
+                mon = 'May';
+                break;
+            case 'Juni':
+                mon = 'June';
+                break;
+            case 'Juli':
+                mon = 'July';
+                break;
+            case 'Augustus':
+                mon = 'August';
+                break;
+            case 'Oktober':
+                mon = 'October';
+                break;
+        }
         return new Date(Date.parse(mon + " 1, 2012")).getMonth() + 1
     }
 
