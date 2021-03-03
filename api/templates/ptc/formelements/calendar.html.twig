@@ -382,6 +382,7 @@
             time[0] = time[0].replace(/\s/g, '');
             time[1] = time[1].replace(/\s/g, '');
 
+            console.log(month);
             month = parseInt(month);
             if (month < 10) {
                 month = month.toString();
@@ -413,7 +414,8 @@
             // console.log(formattedSelectedDate);
             let hiddenInput = document.getElementById('calendarValue');
 
-            hiddenInput.value = formattedSelectedDate;
+            //hiddenInput.value = formattedSelectedDate;
+            hiddenInput.value = '2021-12-12 12:12'
 
             // console.log(startDate);
 
