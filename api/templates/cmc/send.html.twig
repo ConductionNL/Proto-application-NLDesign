@@ -29,7 +29,7 @@
 
     <form method="post" action="{{ path('app_cmc_send') }}" class="form">
         <div class="row">
-            <div class="col-md-8 col-sm-12" style="margin-bottom: 20px;">
+            <div class="col-md-8  col-sm-12" style="margin-bottom: 20px">
                 <div class="content-background">
                     <div class="content">
                         <div class="input">
@@ -67,7 +67,7 @@
                         <div class="input">
                             <label class="input__label" for="message">{{ 'message'|trans|capitalize }}</label>
                             <textarea required="" name="message" id="message"
-                                      class="input__control input__control--text>{% if resource.message is defined %}{{ resource.message }}{% endif %}</textarea>
+                                      class="input__control input__control--text">{% if resource.message is defined %}{{ resource.message }}{% endif %}</textarea>
                         </div>
                     </div><!-- /.content -->
                 </div><!-- /.content-background -->
