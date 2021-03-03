@@ -31,11 +31,8 @@
         <a class="btn btn--block" style="margin-top: 20px;" data-toggle="modal" data-target="#myModal" onclick="openModal()"><i style="margin-right: 10px" class="fas fa-lock"></i> {{ 'login'|trans|capitalize }}</a>
     </div>
 {% elseif not app.user and process.login is defined and process.login in ["optional","onSubmit"] %}
-    <div class="col-md-6" >
+    <div class="col-md-12" >
         <a class="btn btn--block" style="width:100%; margin-top: 20px;" data-toggle="modal" data-target="#myModal" onclick="openModal()"><i style="margin-right: 10px" class="fas fa-lock"></i> {{ 'login'|trans|capitalize }}</a>
-    </div>
-    <div class="col-md-6" >
-        <button class="btn btn--block" style="width:100%; margin-top: 20px;" name="submit">{{ 'continue without logging in'|trans|capitalize }}</button>
     </div>
 {% else %}
     <div class="col-md-12" >
