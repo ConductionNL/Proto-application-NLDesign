@@ -13,8 +13,6 @@
     {#    </div>#}
         <div class="col-sm-12 col-lg-6">
             <div class="input input--horizontal {%if property.valid is defined and not property.valid %}input--invalid{% endif %}">
-                <label class="input__label" for="postalCode">{{ property.title }} {% if property.required is defined and property.required %}<span style="color: red;"><strong>*</strong></span>{% endif %}</label>
-                {%  if property.description %}<span class="input__hint" id="{{ property.id }}_name">{{ property.description }}</span>{% endif %}
                 <input class="input__control input__control--text" id="kenteken"  type="text" {% if property.required is defined and property.required %}required{% endif %}
                     {% if request['properties'][property.name] is defined and  request['properties'][property.name] %}
                     value="{{  request['properties'][property.name] }}"
@@ -26,7 +24,6 @@
             </div>
         </div>
         <div class="col-sm-12 col-lg-2">
-            <br>
             <div style="display: flex;">
                 <button type="button" id="searchButton" onclick="getBagKeys()" style="width: 100%; color: black; background-color: #f9e11e" class="btn btn-primary">Zoeken</button>
             </div>
