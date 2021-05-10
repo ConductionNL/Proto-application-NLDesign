@@ -46,13 +46,9 @@
             {% if slug == 'instruction' %}
                 <div class="col-md-12 no-padding">
                     {% if process.requireLogin is defined and process.requireLogin == 'true' and (app.user is not defined or app.user is null) %}
-                        <div class="col-md-6" style="padding-left: 0px; margin-top: 20px;">
+                        <div class="col-md-12" style="padding-left: 0px; margin-top: 20px;">
                             <a class="btn btn--block" data-toggle="modal" data-target="#myModal" onclick="openModal()"><i style="margin-right: 10px" class="fas fa-lock"></i> {{ 'login'|trans|capitalize }}</a>
                             {%  include 'login/widgets/login_modal.html.twig' %}
-                        </div><!-- /.col -->
-                        <div class="col-md-6" style="padding-right: 0px; margin-top: 20px;">
-                        <a class="btn btn--block btn--primary"
-                           href="{{ path('app_ptc_slug',{id: process.id, slug:  process.stages[0].slug }) }}">{{ 'continue without logging in'|trans|capitalize }}</a>
                         </div><!-- /.col -->
                     {% elseif resumeRequest is defined and resumeRequest == 'resume' %}
                         {% if request.currentStage != 'submit' %}
