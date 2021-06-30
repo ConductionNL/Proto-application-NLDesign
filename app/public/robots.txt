@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+Sitemap: https://www.dashkube.com/sitemap.xml
+
+User-agent: *
+Disallow: src/components/admin
+Allow: /

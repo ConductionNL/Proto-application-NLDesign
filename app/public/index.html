@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta name="application-name" content="Dashkube - The Kubernetes management tool for cloud environments" />
+        <meta name="author" content="Conduction" />
+        <meta name="description" content="Dashkube is a Kubernetes-oriented Dashboard and makes it possible to install and customize applications and components with just one click!" />
+        <meta name="keywords" content="kubernetes, cloud, commonground, common ground, gaia-x, getting started with Kubernetes, Kubernetes management tool, cloud environment,  Kubernetes cluster, Kubernetes tutorial, Kubernetes dashboard, How to use Kubernetes dashboard" />
+
+        <link rel="canonical" href="https://dashkube.com/">
+        <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+        <!--
+          manifest.json provides metadata used when your web app is installed on a
+          user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+        -->
+        <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+        <!--
+          Notice the use of %PUBLIC_URL% in the tags above.
+          It will be replaced with the URL of the `public` folder during the build.
+          Only files inside the `public` folder can be referenced from the HTML.
+
+          Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+          work correctly both with client-side routing and a non-root public URL.
+          Learn how to configure a non-root public URL by running `npm run build`.
+        -->
+        <title>Dashkube - The Kubernetes management tool for cloud environments</title>
+
+        <!-- Google Tag Manager -->
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-WPDS5VD');</script>
+        <!-- End Google Tag Manager -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-STCE50MTB8"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-STCE50MTB8');
+        </script>
+
+
+        <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/webfont/webfont.min.js"></script>
+        <script>
+            WebFont.load({
+                google: {"families": ["Lato:300,400,700,900"]},
+                custom: {
+                    "families": ["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands", "simple-line-icons"],
+                    urls: ['/bundles/atlantis/assets/css/fonts.min.css']
+                },
+                active: function () {
+                    sessionStorage.fonts = true;
+                }
+            });
+        </script>
+        <script src="https://kit.fontawesome.com/d146911ac0.js" crossorigin="anonymous"></script>
+
+        <!-- Preloads -->
+
+        <!-- CSS -->
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/bootstrap.min.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/atlantis2.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/atlantis.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/documentation.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/css/custom.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/css/prism.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/chocolat.min.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/styles.min.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/custom.min.css" as="style" />
+        <link rel="preload" href="%PUBLIC_URL%/bundles/atlantis/assets/css/landing.min.css" as="style" />
+        <link rel="preload" href="cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" as="style" />
+        <link rel="preload" href="cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" as="style" />
+
+        <!-- JS -->
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/jquery.3.2.1.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/popper.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/bootstrap.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/moment/moment.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/chart.js/chart.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/chart-circle/circles.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/datatables/datatables.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/gmaps/gmaps.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/dropzone/dropzone.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/fullcalendar/fullcalendar.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery.validate/jquery.validate.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/summernote/summernote-bs4.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/select2/select2.full.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/sweetalert/sweetalert.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/js/prism.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis2.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/prism/prism.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/prism/prism-normalize-whitespace.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis.min.js" as="script" />
+        <link rel="preload" src="//code.jquery.com/jquery-3.3.1.min.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/tooltip.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/landing.js" as="script" />
+        <link rel="preload" src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/slick.min.js" as="script" />
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css" rel="stylesheet" type="text/css" />
+
+        <style>
+
+            div.vis-network div.vis-navigation div.vis-button.vis-up,
+            div.vis-network div.vis-navigation div.vis-button.vis-down,
+            div.vis-network div.vis-navigation div.vis-button.vis-left,
+            div.vis-network div.vis-navigation div.vis-button.vis-right,
+            div.vis-network div.vis-navigation div.vis-button.vis-zoomIn,
+            div.vis-network div.vis-navigation div.vis-button.vis-zoomOut,
+            div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
+                background-image: none !important;
+                text-align: center;
+            }
+
+            div.vis-network div.vis-navigation div.vis-button:hover {
+                box-shadow: none !important;
+            }
+
+            .vis-button:after {
+                font-size: 2em;
+                color: #146FE2;
+            }
+
+            .vis-button:hover:after {
+                font-size: 2em;
+                color: #0056bf;
+            }
+
+            .vis-button.vis-up:after {
+                content: "▲";
+            }
+
+            .vis-button.vis-down:after {
+                content: "▼";
+            }
+
+            .vis-button.vis-left:after {
+                content: "◀";
+            }
+
+            .vis-button.vis-right:after {
+                content: "▶";
+            }
+
+            .vis-button.vis-zoomIn:after {
+                content: "+";
+                font-weight: bold;
+            }
+
+            .vis-button.vis-zoomOut:after {
+                content: "−";
+                font-weight: bold;
+            }
+
+            .vis-button.vis-zoomExtends:after {
+                content: "⤧";
+            }
+
+            .swal-icon--info {
+                border-color: #1269DB;
+                color: #1269DB;
+            }
+
+            .swal-icon--info:before {
+                background-color: #1269DB;
+            }
+
+            .swal-icon--info:after {
+                background-color: #1269DB;
+            }
+
+        </style>
+
+    </head>
+    <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPDS5VD"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+
+
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/jquery.3.2.1.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/popper.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/bootstrap.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/moment/moment.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/chart.js/chart.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery.sparkline/jquery.sparkline.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/chart-circle/circles.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/datatables/datatables.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jqvmap/jquery.vmap.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jqvmap/maps/jquery.vmap.world.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/gmaps/gmaps.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/dropzone/dropzone.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/fullcalendar/fullcalendar.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-tagsinput/bootstrap-tagsinput.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/bootstrap-wizard/bootstrapwizard.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/jquery.validate/jquery.validate.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/summernote/summernote-bs4.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/select2/select2.full.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/sweetalert/sweetalert.min.js"></script>
+    <script src="%PUBLIC_URL%/js/prism.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis2.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/prism/prism.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/plugin/prism/prism-normalize-whitespace.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/tooltip.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/atlantis.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/landing.js"></script>
+    <script src="%PUBLIC_URL%/bundles/atlantis/assets/js/core/slick.min.js"></script>
+    </body>
+</html>

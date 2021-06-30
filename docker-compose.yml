@@ -3,6 +3,7 @@ version: '3.5'
 x-cache:
   &cache
   cache_from:
+    - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-app
     - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php
     - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-nginx
     - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-varnish
@@ -10,6 +11,24 @@ x-cache:
     - ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-sphinx
 
 services:
+  app:
+    &app
+    image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-app:${APP_ENV}
+    build:
+      context: ./app
+      target: dashboard_app
+      <<: *cache
+    depends_on:
+      - api
+    volumes:
+      - ./app:/app:rw,cached
+      - '/app/node_modules'
+    ports:
+      - "80:3000"
+    environment:
+      - CHOCKIDAR_USEPOLLING=true
+      - API_URL=http://localhost:83
+    stdin_open: true
   php:
     &php
     image: ${CONTAINER_REGISTRY_BASE}/${CONTAINER_PROJECT_NAME}-php:${APP_ENV}
