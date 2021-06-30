@@ -44,7 +44,7 @@ roadmap: "https://github.com/ConductionNL/pan/blob/master/ROADMAP.md"
 
 developmentStatus: development
 
-softwareType: "standalone/other"
+softwareType: "standalone/web"
 
 #intendedAudience:
 #  scope:
@@ -116,6 +116,7 @@ dependsOn:
     open:
         - name: Kubernetes
           versionMin: "1.15.5-do.1"
+        - name: proto-application-nldesign/pan
 
 installations:
     - type: helm
