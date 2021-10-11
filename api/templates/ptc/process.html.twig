@@ -18,20 +18,22 @@
                             <a class="backlink" href="{{ path('app_ptc_index') }}">{{ 'processes'|trans|capitalize }}</a>
                         {% endif %}
                         <header class="content__header" style="margin-top: 20px;">
-                            {% if stage.name is defined %}
-                                <h1 class="content__header-title">
-                                    {% if stage.icon is defined and stage.icon is not empty %}
-                                        <i style="margin-right: 10px;" class="{{ stage.icon }}"></i>
-                                    {% endif %}
-                                    {{ stage.name|capitalize }}
-                                    {% if stage.valid is defined and stage.valid %}<span class="icon icon-check"
-                                                                                         role="presentation" x-uno-tooltip=""
-                                                                                         title="{{ 'You have correctly filled out all required questions for this stage'|trans|capitalize }}"></span>{% endif %}
-                                </h1>
-                                {{ stage.description|raw }}
-                            {% else %}
-                                <h1 class="content__header-title">{{ process.name|capitalize }}</h1>
-                                {{ process.description|raw }}
+                            {% if request|default and request.status != 'submitted' %}
+                                {% if stage.name is defined %}
+                                    <h1 class="content__header-title">
+                                        {% if stage.icon is defined and stage.icon is not empty %}
+                                            <i style="margin-right: 10px;" class="{{ stage.icon }}"></i>
+                                        {% endif %}
+                                        {{ stage.name|capitalize }}
+                                        {% if stage.valid is defined and stage.valid %}<span class="icon icon-check"
+                                                                                             role="presentation" x-uno-tooltip=""
+                                                                                             title="{{ 'You have correctly filled out all required questions for this stage'|trans|capitalize }}"></span>{% endif %}
+                                    </h1>
+                                    {{ stage.description|raw }}
+                                {% else %}
+                                    <h1 class="content__header-title">{{ process.name|capitalize }}</h1>
+                                    {{ process.description|raw }}
+                                {% endif %}
                             {% endif %}
                         </header>
                     </header>

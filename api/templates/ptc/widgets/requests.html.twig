@@ -22,17 +22,17 @@
                 <tr>
                     <td>{% if resource.dateCreated is defined and resource.dateCreated is not null %}{{ resource.dateCreated|date("d-m-Y H:i:s", "Europe/Paris") }}{% endif %}</td>
                     <td>{{ resource.status|trans|capitalize }}</td>
-                    {% if resource.status == 'submitted' or resource.status == 'incomplete' %}
-                        {% set resumeRequest = 'resume' %}
-                        <td><a style="background: #cfebfd; padding: 6px; border-radius: 6px"
-                               href="{{ path('app_ptc_process_stage', {id: commonground_resource(resource.processType).id, request: resource['@id']}) }}"><b>{{ 'resume'|trans|capitalize }}</b></a>
-                        </td>
-                    {% else %}
-                        {% set resumeRequest = 'see' %}
-                        <td><a style="background: #cfebfd; padding: 6px; border-radius: 6px"
-                               href="{{ path('app_ptc_process_stage', {id: commonground_resource(resource.processType).id, request: resource['@id']}) }}"><b>{{ 'see'|trans|capitalize }}</b></a>
-                        </td>
-                    {% endif %}
+{#                    {% if resource.status == 'submitted' or resource.status == 'incomplete' %}#}
+{#                        {% set resumeRequest = 'resume' %}#}
+{#                        <td><a style="background: #cfebfd; padding: 6px; border-radius: 6px"#}
+{#                               href="{{ path('app_ptc_process_stage', {id: commonground_resource(resource.processType).id, request: resource['@id']}) }}"><b>{{ 'resume'|trans|capitalize }}</b></a>#}
+{#                        </td>#}
+{#                    {% else %}#}
+{#                        {% set resumeRequest = 'see' %}#}
+{#                        <td><a style="background: #cfebfd; padding: 6px; border-radius: 6px"#}
+{#                               href="{{ path('app_ptc_process_stage', {id: commonground_resource(resource.processType).id, request: resource['@id']}) }}"><b>{{ 'see'|trans|capitalize }}</b></a>#}
+{#                        </td>#}
+{#                    {% endif %}#}
                 </tr>
             {% endfor %}
             </tbody>

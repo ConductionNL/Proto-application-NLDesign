@@ -33,6 +33,25 @@
         color: black;
         border: 2px solid black !important;
     }
+    .blocked-option {
+        width: 100%;
+        display: block;
+        height: 100%;
+        background-color: lightgrey;
+        border: 1px solid lightgray;
+    }
+
+    .possible-option {
+        width: 100% ;
+        display: block ;
+        height: 100% ;
+        background-color: #148839 ;
+        border: 1px solid lightgray ;
+    }
+
+    .possible-option:hover {
+        background: limegreen;
+    }
 </style>
 <table class="table table--small-font">
     <thead>
@@ -190,7 +209,7 @@
             td.setAttribute('style', 'height: 40px; padding: 0;');
 
             let button = document.createElement('button');
-            button.setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: white; border: 1px solid lightgray;');
+            // button.setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: white; border: 1px solid lightgray;');
             button.type = 'button';
             button.value = days[i].children[0].innerHTML;
 
@@ -247,9 +266,14 @@
                 var optionEndDateMs = optionEndDate.getTime();
                 buttons[j].name = date.getDate() + ' ' + months[date.getMonth()] + ' ' + optionYear;
                 buttons[j].innerText = 'kies';
-                buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: #148839; border: 1px solid lightgray;');
+                // buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: #148839; border: 1px solid lightgray;');
+                buttons[j].classList.add('possible-option');
+                buttons[j].classList.remove('blocked-option');
                 if (currentWeek == arr[0] && currentYear == optionYear && (currentDay === (i + 1) || currentDay > (i + 1))) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    // buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
+
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else {
@@ -296,19 +320,23 @@
                 {#console.log(eventStartDate);#}
                 {#console.log(eventEndDate);#}
                 if (eventStartDate >= optionStartDateMs && eventStartDate < optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventEndDate > optionStartDateMs && eventEndDate < optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventStartDate < optionStartDateMs && eventEndDate > optionEndDateMs) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled');
                 } else if (eventStartDate === optionStartDate && eventEndDate === optionStartDate) {
-                    buttons[j].setAttribute('style', 'width: 100%; display: block; height: 100%; background-color: lightgrey; border: 1px solid lightgray;');
+                    buttons[j].classList.add('blocked-option');
+                    buttons[j].classList.remove('possible-option');
                     buttons[j].innerText = '';
                     buttons[j].setAttribute('disabled', 'disabled')
                 }
@@ -346,14 +374,19 @@
             let testData = document.getElementById('testData');
             let time = timeFrame.split('-');
 
+            // console.log(date);
+            // console.log(time);
+
             testData.innerText = 'Gekozen datum: ' + date + ' tussen: ' + time[0] + ' - ' + time[1];
 
             let date2 = date.split(' ');
+            // console.log(date2[1]);
             let month = getMonthFromString(date2[1]);
 
             time[0] = time[0].replace(/\s/g, '');
             time[1] = time[1].replace(/\s/g, '');
 
+            // console.log(month);
             month = parseInt(month);
             if (month < 10) {
                 month = month.toString();
@@ -385,7 +418,9 @@
             // console.log(formattedSelectedDate);
             let hiddenInput = document.getElementById('calendarValue');
 
-            hiddenInput.value = formattedSelectedDate;
+            // console.log(formattedSelectedDate);
+            //hiddenInput.value = formattedSelectedDate;
+            hiddenInput.value = formattedSelectedDate
 
             // console.log(startDate);
 
@@ -436,6 +471,32 @@
     }
 
     function getMonthFromString(mon) {
+        switch(mon){
+            case 'Januari':
+                mon = 'January';
+                break;
+            case 'Februari':
+                mon = 'February';
+                break;
+            case 'Maart':
+                mon = 'March';
+                break;
+            case 'Mei':
+                mon = 'May';
+                break;
+            case 'Juni':
+                mon = 'June';
+                break;
+            case 'Juli':
+                mon = 'July';
+                break;
+            case 'Augustus':
+                mon = 'August';
+                break;
+            case 'Oktober':
+                mon = 'October';
+                break;
+        }
         return new Date(Date.parse(mon + " 1, 2012")).getMonth() + 1
     }
 
